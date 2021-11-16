@@ -22,14 +22,13 @@ function SignInForm({ onLogin }) {
 
     return (
         <div className="row">
-            <div className="col-lg-6 mx-auto p-2">
-                <div className="card">
-                    <div className="card-body">
-                        {/*<form className="" action="">*/}
+            <div className="col-lg-12">
+                <div className="card mx-auto my-auto w-25 mt-3">
+                    <div className="card-body text-center">
                         <input
                             type="text"
                             className="form-control"
-                            placeholder="roomId"
+                            placeholder="Беседа"
                             value={roomId}
                             onChange={(e) => setRoomId(e.target.value)}
                             required
@@ -37,15 +36,14 @@ function SignInForm({ onLogin }) {
                         <input
                             type="text"
                             className="form-control mt-1"
-                            placeholder="userName"
+                            placeholder="Логин"
                             value={userName}
                             onChange={(e) => setUserName(e.target.value)}
                             required
                         />
-                        <button disabled={isLoading} className="btn btn-primary mt-1" onClick={onEnter}>
-                            {isLoading ? "Entering..." : "Sign In"}
+                        <button disabled={isLoading} className="btn btn-primary mt-3" onClick={onEnter}>
+                            {isLoading ? "Вход..." : "Войти"}
                         </button>
-                        {/*</form>*/}
                     </div>
                 </div>
             </div>
