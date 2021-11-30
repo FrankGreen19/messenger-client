@@ -30,7 +30,13 @@ export default (state, action) => {
         case 'NEW_MESSAGE':
             return {
                 ...state,
-                messages: [...state.messages, action.payload]
+                rooms: [...state.messages, action.payload]
+            };
+
+        case 'SET_ROOMS':
+            return {
+                ...state,
+                rooms: [action.payload.rooms]
             }
         default:
             return state;
