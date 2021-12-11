@@ -11,11 +11,21 @@ const Room = ({room, setRoomId}) => {
                         </div>
                         <hr/>
                         <div className="card-text text-muted">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing.
+                            {
+                                room.messages[room.messages.length - 1]
+                                    ? `${room.messages[room.messages.length - 1].user.firstName}:  ${room.messages[room.messages.length - 1].body}`
+                                    : ''
+                            }
                         </div>
                     </div>
                     <div className="col-lg-4">
-                        <p className="text-muted">29/11/2021</p>
+                        <p className="text-muted">
+                            {
+                                room.messages[room.messages.length - 1]
+                                    ? (new Date(room.messages[room.messages.length - 1].createdAt).toISOString().split('T')[0])
+                                    : ''
+                            }
+                        </p>
                         <hr/>
                         <button className="btn btn-sm btn-outline-primary" onClick={() => setRoomId(room.id)}>Загрузить</button>
                     </div>

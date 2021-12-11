@@ -45,7 +45,6 @@ const Rooms = observer(() => {
         fetchRooms(userStore._user.id).then(roomsData => rooms.setRooms(roomsData));
     }, []);
 
-
     React.useEffect(() => {
         async function fetchData() {
             await axios.get(`/room/${roomId}`).then(roomInfo => setRoomData(roomInfo.data));
