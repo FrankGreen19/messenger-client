@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Message = ({message, userName}) => {
+const Message = ({message, currentUser, user}) => {
     let backgroundColor = '';
     let messageAlign = '';
 
-    if (message.userName === userName) {
+    if (message.user.id === currentUser.id) {
         backgroundColor = '#9966CC';
         messageAlign = 'd-flex flex-row-reverse';
     } else {
@@ -16,15 +16,14 @@ const Message = ({message, userName}) => {
         <div>
             <div className={messageAlign}>
                 <div className="message mt-3"
-                     style={{maxWidth: "30%"}}
-                >
+                     style={{maxWidth: "70%"}}>
                     <span
                         className="text-light rounded p-2 w-auto"
                         style={{backgroundColor: backgroundColor}}>
-                        {message.text}
+                        {message.body}
                     </span>
                         <div className="text-muted mt-1">
-                            <span>{message.userName}</span>
+                            <span>{user.firstName}</span>
                         </div>
                     </div>
             </div>

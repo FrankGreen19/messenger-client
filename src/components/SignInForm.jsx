@@ -1,23 +1,41 @@
 import React from "react";
-import axios from "axios";
+import {login} from "../http/userAPI";
+import {observer} from "mobx-react-lite";
+import {Context} from "../index";
+import { useHistory } from "react-router-dom";
 
-function  SignInForm({ onLogin }) {
-    const [roomId, setRoomId] = React.useState('');
-    const [userName, setUserName] = React.useState('');
-    const [isLoading, setLoading] = React.useState(false);
+const SignInForm = observer(() => {
+    const {userStore} = React.useContext(Context);
+    const history = useHistory();
 
-    async function onEnter() {
-        console.log(roomId, " ", userName);
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
 
-        const data = {
-            roomId,
-            userName
-        };
+    async function signIn() {
+        try {
+            console.log(email, " ", password);
 
-        setLoading(true);
+            let user = await login(email, password);
+            userStore.setUser(user);
+            userStore.setIsAuth(true);
 
-        await axios.post('/', data);
-        onLogin(data);
+            history.push('/rooms');
+
+            // const data = {
+            //     roomId,
+            //     userName
+            // };
+            //
+            // setLoading(true);
+            //
+            // await axios.post('/', data);
+        } catch (error) {
+            if (error.response) {
+                alert(error.response.data.message)
+            } else {
+                alert(error);
+            }
+        }
     }
 
     return (
@@ -28,21 +46,21 @@ function  SignInForm({ onLogin }) {
                         <input
                             type="text"
                             className="form-control"
-                            placeholder="Беседа"
-                            value={roomId}
-                            onChange={(e) => setRoomId(e.target.value)}
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             required
                         />
                         <input
-                            type="text"
+                            type="password"
                             className="form-control mt-1"
-                            placeholder="Логин"
-                            value={userName}
-                            onChange={(e) => setUserName(e.target.value)}
+                            placeholder="Пароль"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                             required
                         />
-                        <button disabled={isLoading} className="btn btn-primary mt-3" onClick={onEnter}>
-                            {isLoading ? "Вход..." : "Войти"}
+                        <button className="btn btn-primary mt-3" onClick={signIn}>
+                            {"Войти"}
                         </button>
                     </div>
                 </div>
@@ -50,6 +68,6 @@ function  SignInForm({ onLogin }) {
         </div>
 
     )
-}
+})
 
 export default SignInForm;

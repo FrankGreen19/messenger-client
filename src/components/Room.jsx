@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Room = ({room}) => {
+const Room = ({room, setRoomId}) => {
     return (
         <div className="card mt-1">
             <div className="card-body">
@@ -17,8 +17,8 @@ const Room = ({room}) => {
                     <div className="col-lg-4">
                         <p className="text-muted">29/11/2021</p>
                         <hr/>
+                        <button className="btn btn-sm btn-outline-primary" onClick={() => setRoomId(room.id)}>Загрузить</button>
                     </div>
-
                 </div>
             </div>
         </div>
