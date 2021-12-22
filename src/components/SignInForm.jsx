@@ -20,7 +20,7 @@ const SignInForm = observer(() => {
 
     function validate() {
         setError('');
-        setRedUnderline('');
+        // setRedUnderline('');
 
         if (email.length === 0 || password.length === 0) {
             setError('Поля не могут быть пустыми\n')
@@ -80,7 +80,7 @@ const SignInForm = observer(() => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            style={redUnderline}
+                            // style={redUnderline}
                         />
                         <input
                             type="password"
@@ -89,7 +89,7 @@ const SignInForm = observer(() => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            style={redUnderline}
+                            // style={redUnderline}
                         />
                         <button className="btn btn-primary mt-4" onClick={signIn} disabled={!buttonActive}>
                             Войти
